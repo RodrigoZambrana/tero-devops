@@ -1,0 +1,43 @@
+# Secretos y configuración local: nunca al repo (usar .env.example como plantilla)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+# Los tfvars por ambiente sí se versionan (no llevan secretos); los locales no
+*.auto.tfvars
+local.tfvars
+
+# Dependencias y artefactos de build
+node_modules/
+dist/
+build/
+coverage/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+/src/catalog/catalog
+/src/orders/orders
+
+# Reportes generados por el pipeline
+reports/
+
+# Sistema / editor
+.DS_Store
+__MACOSX/
+.idea/
+.vscode/
+*.swp
