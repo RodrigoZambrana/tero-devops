@@ -18,6 +18,18 @@ Tero es una tienda en línea basada en microservicios. Permite explorar un catá
 
 Estrategia de ramas: GitHub Flow con promoción dev → test → prod ([ADR-001](docs/adr/ADR-001-estrategia-de-ramas.md)).
 
+## Secretos
+
+- Ninguna credencial vive en el repositorio: en local salen del `.env` (ignorado por git, plantilla en `.env.example`);
+  en AWS, de Secrets Manager. El servicio `admin` no arranca si falta alguna variable obligatoria.
+- **CI:** el workflow `secret-scan` corre Gitleaks sobre todo el historial en cada PR y en cada push a `main`, y falla el
+  build si encuentra credenciales. Las excepciones, justificadas, están en `.gitleaks.toml`.
+- **Local:** activar una vez por clon el hook que frena commits con secretos o con un `.env`:
+
+```bash
+git config core.hooksPath .githooks
+```
+
 ## Requisitos previos
 
 - [Docker](https://docs.docker.com/get-docker/) 24+
