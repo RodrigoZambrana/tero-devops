@@ -25,6 +25,13 @@ Estrategia de ramas: GitHub Flow con promoción dev → test → prod ([ADR-001]
 
 ## Inicio rápido
 
+Las credenciales no están en el repositorio. Antes de levantar, crear el `.env` a partir de la plantilla y completar
+las contraseñas y el secreto JWT (el `.env` está en `.gitignore`):
+
+```bash
+cp .env.example .env
+```
+
 ```bash
 docker compose up --build
 ```
@@ -34,7 +41,7 @@ docker compose up --build
 | Tienda   | http://localhost:8080 |
 | Admin    | http://localhost:8081 |
 
-Credenciales del admin: las que se definan en `ADMIN_USERNAME` y `ADMIN_PASSWORD` del `.env` (plantilla en `.env.example`).
+Credenciales del admin: las que se definan en `ADMIN_USERNAME` y `ADMIN_PASSWORD` del `.env`.
 
 ## Comandos útiles
 
