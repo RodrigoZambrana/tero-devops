@@ -4,6 +4,18 @@ Tero es una tienda en línea basada en microservicios. Permite explorar un catá
 
 > Los nombres técnicos (servicios `catalog`, `carts`, `orders`, `checkout`, variables `RETAIL_*`, usuario de base de datos `retail_user`) se mantienen tal como los dejó el equipo de desarrollo original.
 
+## Organización del repositorio
+
+| Carpeta | Contenido |
+|---|---|
+| `src/` | Los seis microservicios (`ui`, `catalog`, `cart`, `checkout`, `orders`, `admin`) |
+| `infra/` | Terraform: `modules/` reutilizables y `envs/` con los `.tfvars` de dev, test y prod |
+| `.github/workflows/` | Pipelines de CI/CD como código (GitHub Actions) |
+| `tests/` | Pruebas funcionales/de integración entre servicios |
+| `docs/adr/` | Decisiones de arquitectura (ADR) |
+| `docs/diagramas/` | Arquitectura, pipeline y modelo de ramas |
+| `docs/evidencias/` | Capturas del tablero, de los pipelines y de la observabilidad |
+
 ## Requisitos previos
 
 - [Docker](https://docs.docker.com/get-docker/) 24+
