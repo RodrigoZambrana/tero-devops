@@ -1,0 +1,7 @@
+Dockerfile
+.dockerignore
+.env
+.env.*
+.git
+*.md
+catalog
