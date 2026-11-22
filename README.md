@@ -16,6 +16,8 @@ Tero es una tienda en línea basada en microservicios. Permite explorar un catá
 | `docs/diagramas/` | Arquitectura, pipeline y modelo de ramas |
 | `docs/evidencias/` | Capturas del tablero, de los pipelines y de la observabilidad |
 
+Estrategia de ramas: GitHub Flow con promoción dev → test → prod ([ADR-001](docs/adr/ADR-001-estrategia-de-ramas.md)).
+
 ## Requisitos previos
 
 - [Docker](https://docs.docker.com/get-docker/) 24+
