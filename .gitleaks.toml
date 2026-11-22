@@ -1,0 +1,9 @@
+# Configuración de Gitleaks: reglas por defecto + excepciones justificadas.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Excepciones justificadas"
+# Binario de Yarn que el equipo original versionó: la regla generic-api-key da un falso positivo en código minificado,
+# no es un secreto del proyecto.
+paths = ['''src/checkout/\.yarn/releases/.*\.cjs''']
