@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Hook local (SEC-03): bloquea el commit si lo que está en stage contiene secretos o un .env.
+# Activarlo una vez por clon:  git config core.hooksPath .githooks
+set -euo pipefail
+
+if git diff --cached --name-only | grep -E '(^|/)\.env$|(^|/)\.env\.[^e]' >/dev/null; then
+  echo "pre-commit: no se commitea un archivo .env (usar .env.example)." >&2
+  exit 1
+fi
+
+root="$(git rev-parse --show-toplevel)"
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks git "$root" --staged --no-banner --redact --config "$root/.gitleaks.toml"
+elif command -v docker >/dev/null 2>&1; then
+  # En un worktree, .git es un archivo que apunta al repo principal: se monta también ese directorio común.
+  common="$(cd "$(git rev-parse --git-common-dir)" && pwd)"
+  docker run --rm -v "$root:$root" -v "$common:$common" -w "$root" zricethezav/gitleaks:v8.30.1 \
+    git "$root" --staged --no-banner --redact --config "$root/.gitleaks.toml"
+else
+  echo "pre-commit: no hay gitleaks ni docker; el control queda solo en CI." >&2
+fi
